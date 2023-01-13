@@ -30,4 +30,10 @@ RSpec.describe Patient do
       expect(Patient.alphabetical).to eq([@denny, @katie, @rebecca, @zola])
     end
   end
+
+  describe '#over_18' do
+    it 'returns patients that are over the age of 18' do
+      expect(Patient.over_18).to eq([@katie, @denny, @rebecca])
+    end
+  end
 end
