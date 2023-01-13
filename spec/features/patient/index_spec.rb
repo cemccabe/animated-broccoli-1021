@@ -23,7 +23,7 @@ RSpec.describe "the Patient index page" do
   end
 
   it 'I see the names of all adult patients (age is greater than 18)' do
-    visit patient_path
+    visit patients_path
 
     within("#patients_over_18") do
       expect(page).to have_content(@katie)
@@ -34,7 +34,7 @@ RSpec.describe "the Patient index page" do
   end
 
   it 'And I see the names are in ascending alphabetical order (A - Z)' do
-    visit patient_path
+    visit patients_path
 
     within("#patients_over_18") do
       expect(@denny).to appear_before(@katie)
