@@ -33,7 +33,7 @@ RSpec.describe Patient do
 
   describe '#over_18' do
     it 'returns patients that are over the age of 18' do
-      expect(Patient.over_18).to eq([@katie, @denny, @rebecca])
+      expect(Patient.over_18.sort).to eq([@katie, @denny, @rebecca].sort)
     end
   end
 end

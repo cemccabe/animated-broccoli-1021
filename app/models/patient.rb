@@ -5,4 +5,8 @@ class Patient < ApplicationRecord
   def self.alphabetical
     self.order(:name)
   end
+
+  def self.over_18
+    self.where('age >= 18')
+  end
 end
