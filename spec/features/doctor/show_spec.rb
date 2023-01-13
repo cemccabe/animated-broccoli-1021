@@ -48,15 +48,25 @@ RSpec.describe "the Doctor show page" do
     end
   end
 
-  it 'removes a patient from doctor\'s caseload via button' do
+  it 'removes a patient from doctor\'s caseload via button without affecting other doctor caseloads' do
+    visit doctor_path(@alex)
     within("#patients") do
-      within("#patient-#{@katie.id}") do
+      expect(page).to have_content(@denny.name)
+    end
+
+    visit doctor_path(@meredith)
+    within("#patients") do
+      within("#patient-#{@denny.id}") do
         expect(page).to have_button('Remove Patient')
         click_button('Remove Patient')
       end
     end
-
     expect(current_path).to eq(doctor_path(@meredith))
-    expect(page).to_not have_content(@katie.name)
+    expect(page).to_not have_content(@denny.name)
+
+    visit doctor_path(@alex)
+    within("#patients") do
+      expect(page).to have_content(@denny.name)
+    end
   end
 end
