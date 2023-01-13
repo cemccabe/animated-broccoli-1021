@@ -20,25 +20,23 @@ RSpec.describe "the Patient index page" do
     DoctorPatient.create!(doctor_id: @alex.id, patient_id: @denny.id)
     DoctorPatient.create!(doctor_id: @alex.id, patient_id: @rebecca.id)
     DoctorPatient.create!(doctor_id: @derek.id, patient_id: @zola.id)
+
+    visit patients_path
   end
 
   it 'I see the names of all adult patients (age is greater than 18)' do
-    visit patients_path
-
     within("#patients_over_18") do
-      expect(page).to have_content(@katie)
-      expect(page).to have_content(@denny)
-      expect(page).to have_content(@rebecca)
-      expect(page).to_not have_content(@zola)
+      expect(page).to have_content(@katie.name)
+      expect(page).to have_content(@denny.name)
+      expect(page).to have_content(@rebecca.name)
+      expect(page).to_not have_content(@zola.name)
     end
   end
 
   it 'And I see the names are in ascending alphabetical order (A - Z)' do
-    visit patients_path
-
     within("#patients_over_18") do
-      expect(@denny).to appear_before(@katie)
-      expect(@katie).to appear_before(@rebecca)
+      expect(@denny.name).to appear_before(@katie.name)
+      expect(@katie.name).to appear_before(@rebecca.name)
     end
   end
 end

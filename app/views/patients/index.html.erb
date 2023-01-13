@@ -1,0 +1,7 @@
+<h1>PATIENTS INDEX PAGE</h1>
+
+<div id="patients_over_18">
+  <% @patients.each do |patient| %>
+    <p><%= "#{patient.name}, age: #{patient.age}" %></p>
+  <% end %>
+</div>
