@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :doctors, only: [:show]
+  resources :doctors, only: [:show, :update]
 end
