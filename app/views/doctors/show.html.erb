@@ -12,6 +12,9 @@
 
 <div id="patients">
   <p>Patients: <% @doctor.patients.each do |patient| %>
+    <div id="patient-<%= patient.id %>">
     <%= patient.name %>
+    <%= button_to 'Remove Patient', "/doctors/#{@doctor.id}?patient_id=#{patient.id}", method: :patch %>
+    </div>
   <% end %></p>
 </div>
