@@ -22,7 +22,27 @@ RSpec.describe "the Doctor show page" do
     DoctorPatient.create!(doctor_id: @derek.id, patient_id: @zola.id)
   end
 
-  it 'I see all of that doctor\'s information'
+  it 'I see all of that doctor\'s information' do
+    visit doctor_path(@meredith)
+
+    within("#information") do
+      expect(page).to have_content(@meredith.name)
+      expect(page).to have_content(@meredith.specialty)
+      expect(page).to have_content(@meredith.university)
+      expect(page).to_not have_content(@alex.name)
+    end
+
+    within("#hospital") do
+      expect(page).to have_content(@grey.name)
+      expect(page).to_not have_content(@seaside.name)
+    end
+
+    within("#patients") do
+      expect(page).to have_content(@katie.name)
+      expect(page).to have_content(@denny.name)
+      expect(page).to_not have_content(@zola.name)
+    end
+  end
   it 'And I see the name of the hospital where this doctor works'
   it 'And I see the names of all of the patients this doctor has'
 end
